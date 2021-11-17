@@ -1,0 +1,31 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+
+int main()
+{
+	int i, j;
+	int arr[10][10];
+	for (i = 0; i <= 9; i++)
+	{
+		arr[i][i] = 1;
+		arr[i][0] = 1;
+	}
+	for (i = 2; i < 10; i++)//限制行数
+	{
+		for (j = 1; j < i; j++)//限制列数
+		{
+			arr[i][j] = arr[i - 1][j - 1] + arr[i - 1][j];
+		}
+	}
+
+	for (i = 0; i < 10; i++)
+	{
+		for (j = 0; j < i+1; j++)
+		{
+			printf("%d ", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	return 0;
+}
