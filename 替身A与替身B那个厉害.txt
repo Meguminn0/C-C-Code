@@ -1,0 +1,52 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<math.h>
+//题目：
+//在《10JO的奇妙冒险》中，每一个替身都有自己对应的六维面板。一个六维面板中有6个属性分别为A，B，C，D，E，F，每一个属性都有一个等级(等级)
+//如上图，替身A各个属性的等级分别为3，3，3，4，3，2，很明显替身B的每一个属性均为5。
+//我们规定：如果一个替身(起个名字叫A)的面板框成的面积大于一个替身(起个名字叫B)，那么这个替身A比替身B要厉害。
+//现在给你两个替身的各个属性的等级，问你是谁厉害。
+
+int Area_triangle(float a, float b)//求六边形以各边为底的三角形的面积
+{
+	float area;
+	area = a * b * sqrt(3) / 4;//三角形的面积公式：S=a*b*sin(c)/2
+	
+	return area;
+}
+
+int main()
+{
+	float a_A, a_B, a_C, a_D, a_E, a_F;//替身a的各个属性
+	float b_A, b_B, b_C, b_D, b_E, b_F;//替身b的各个属性
+	int  a_area, b_area;//面积
+	printf("请输入替身a各个属性等级(A,B,C,D,E,F)：\n");
+	scanf("%f%f%f%f%f%f", &a_A, &a_B, &a_C, &a_D, &a_E, &a_F);
+	while ((getchar()) != '\n');//清空输入缓冲区
+	printf("请输入替身b各个属性等级(A,B,C,D,E,F)：\n");
+	scanf("%f%f%f%f%f%f", &b_A, &b_B, &b_C, &b_D, &b_E, &b_F);//初始化替身a, b的属性
+
+	a_area = (int)Area_triangle(a_A, a_B) + Area_triangle(a_B, a_C) + Area_triangle(a_C, a_D) + Area_triangle(a_D, a_E) + Area_triangle(a_E, a_F);//替身a的面积
+	b_area = (int)Area_triangle(b_A, b_B) + Area_triangle(b_B, b_C) + Area_triangle(b_C, b_D) + Area_triangle(b_D, b_E) + Area_triangle(b_E, b_F);//替身b的面积
+
+	if (a_area < b_area)//比较
+	{
+		printf("替身a的面积：%d\n", a_area);
+		printf("替身b的面积：%d\n", b_area);
+		printf("替身B的比替身A要厉害！");
+	}
+	else if (a_area > b_area)
+	{
+		printf("替身a的面积：%d\n", a_area);
+		printf("替身b的面积：%d\n", b_area);
+		printf("替身A的比替身B要厉害！");
+	}
+	else if (a_area == b_area)
+	{
+		printf("替身a的面积：%d\n", a_area);
+		printf("替身b的面积：%d\n", b_area);
+		printf("替身A的与替身B一样厉害！");
+	}
+
+	return 0;
+}
