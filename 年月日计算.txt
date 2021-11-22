@@ -1,0 +1,115 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+
+int main(void)
+{
+	int year, month, day, x = 0, a;
+	printf("请输入年月日：");
+	scanf("%d%d%d", &year, &month, &day);
+	if (#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+
+int main(void)
+{
+	int year, month, day, x = 0, a;
+	printf("请输入年月日：");
+	scanf("%d%d%d", &year, &month, &day);
+	if (year % 400 == 0 || year % 4 == 0 && year % 100 != 0)
+	{
+		a = 1;//闰年
+	}
+	else
+	{
+		a = 0;//平年
+	}
+
+	switch (a)
+	{
+	case 1:
+		switch (month - 1)
+		{
+		case 11:x += 30;
+		case 10:x += 31;
+		case 9:x += 30;
+		case 8:x += 31;
+		case 7:x += 31;
+		case 6:x += 30;
+		case 5:x += 31;
+		case 4:x += 30;
+		case 3:x += 31;
+		case 2:x += 29;
+		case 1:x += 31;
+		case 0:x += day; break;
+		default:printf("输入错误，请输入正确的年月日！！\n");
+		}
+	case 0:
+		switch (month - 1)
+		{
+		case 11:x += 30;
+		case 10:x += 31;
+		case 9:x += 30;
+		case 8:x += 31;
+		case 7:x += 31;
+		case 6:x += 30;
+		case 5:x += 31;
+		case 4:x += 30;
+		case 3:x += 31;
+		case 2:x += 28;
+		case 1:x += 31;
+		case 0:x += day; break;
+		default:printf("输入错误，请输入正确的年月日！！\n");
+		}
+	}
+	printf("%d年,%d月,%d日在那一年是第%d天", year, month, day, x);
+
+	return 0;
+}
+	{
+		a = 1;//闰年
+	}
+	else
+	{
+		a = 0;//平年
+	}
+
+	switch (a)
+	{
+	case 1:
+		switch (month - 1)
+		{
+		case 11:x += 30;
+		case 10:x += 31;
+		case 9:x += 30;
+		case 8:x += 31;
+		case 7:x += 31;
+		case 6:x += 30;
+		case 5:x += 31;
+		case 4:x += 30;
+		case 3:x += 31;
+		case 2:x += 29;
+		case 1:x += 31;
+		case 0:x += day; break;
+		default:printf("输入错误，请输入正确的年月日！！\n");
+		}
+	case 0:
+		switch (month - 1)
+		{
+		case 11:x += 30;
+		case 10:x += 31;
+		case 9:x += 30;
+		case 8:x += 31;
+		case 7:x += 31;
+		case 6:x += 30;
+		case 5:x += 31;
+		case 4:x += 30;
+		case 3:x += 31;
+		case 2:x += 28;
+		case 1:x += 31;
+		case 0:x += day; break;
+		default:printf("输入错误，请输入正确的年月日！！\n");
+		}
+	}
+	printf("%d年,%d月,%d日在那一年是第%d天", year, month, day, x);
+
+	return 0;
+}
