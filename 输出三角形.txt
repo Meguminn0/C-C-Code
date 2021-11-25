@@ -1,0 +1,22 @@
+#include<stdio.h>
+
+int main(void)
+{
+	int a, b, x, hang;
+	printf("请输入你需要显示的行数：");
+	scanf_s("%d", &hang);
+	for (a = 1; a <= hang; a++)
+	{
+		for (b = 0; b < hang-a; b++)
+		{
+			printf(" ");
+		}
+		for (x = 0; x < 2 * a - 1; x++)
+		{
+			printf("*");
+		}
+		printf("\n");
+	}
+
+	return 0;
+}
