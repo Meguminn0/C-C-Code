@@ -1,0 +1,16 @@
+#include<stdio.h>
+
+int main(void)
+{
+	int n, m, r;
+	scanf("%d%d", &n, &m);
+	while(m%n)
+	{
+		r = m%n;
+		m = n;
+		n = r;
+	}
+	printf("公因数为:%d\n", n);
+	
+	return 0;
+}
