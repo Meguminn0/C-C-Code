@@ -1,0 +1,38 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+
+//水仙花数：一个三位数的个位，十位，百位的三次方之和等于这个三位数本身
+
+int main(void)
+{
+	int a, ge, shi, bai;
+	printf("请输入一个三位数：");
+	scanf("%d", &a);
+	ge = a % 10;
+	shi = a % 100 / 10;
+	bai = a / 100;
+	if (pow(ge, 3) + pow(shi, 3) + pow(bai, 3) == a)
+	{
+		printf("这个数是水仙花数！！\n");
+	}
+	else
+	{
+		printf("这个数不是水仙花数！！\n");
+	}
+
+	printf("\n判断所有的三位数中那些是水仙花数\n");
+
+	for (a = 100; a < 1000; a++)
+	{
+		ge = a % 10;
+		shi = a % 100 / 10;
+		bai = a / 100;
+		if (pow(ge, 3) + pow(shi, 3) + pow(bai, 3) == a)
+		{
+			printf("%d是水仙花数！！\n", a);
+		}
+
+	}
+
+	return 0;
+}
