@@ -1,0 +1,30 @@
+#include<stdio.h>
+
+//题目：
+//100匹马，驮100担货，大马3担，中马2担，两匹小马1担，问有多少种驮法。
+
+int main()
+{
+	int dm, zm, xm;
+	int count = 0;
+	for (dm = 1; dm <= 100; dm++)
+	{
+		for (zm = 1; zm <= 100; zm++)
+		{
+			for (xm = 2; xm <= 100; xm +=2)
+			{
+				if (dm + zm + xm == 100)
+				{
+					if (dm * 3 + zm * 2 + xm / 2 == 100)
+					{
+						count++;
+						printf("第%d种驮法是:大马:%d，中马:%d，小马:%d\n", count, dm, zm, xm);
+					}
+				}
+			}
+		}
+	}
+	printf("共有%d种驮法\n", count);
+	 
+	return 0;
+}
