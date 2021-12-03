@@ -1,0 +1,37 @@
+#include<stdio.h>
+
+//输入一个年份,判断这年是否为闰年 
+//并输出1000到2000年中闰年的年份 
+//判断是否为闰年的方法：
+//1.能被4整除，且不能被100整除的是闰年; 
+//2.能被400整除的是闰年； 
+// 1和2只需满足一个条件就行成立； 
+
+int main()
+{
+	int year, count;
+	printf("请输入一个年份:>");
+	scanf("%d", &year);
+	if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
+	{
+		printf("%d年是闰年\n", year);
+	}
+	else
+	{
+		printf("%d年不是闰年\n", year);
+	}
+	printf("\n");
+	printf("1000到2000年中是闰年的有：\n");
+	
+	for(year = 1000; year <= 2000; year++)
+	{
+		if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
+		{
+			printf("%d年\t", year);
+			count++;
+		}
+	}
+	printf("\n1000到2000年中一共有%d个闰年", count);
+	
+	return 0;
+}
