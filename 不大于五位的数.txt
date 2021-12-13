@@ -1,0 +1,161 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<math.h>
+
+//给出一个不多于5位的整数，要求 1、求出它是几位数 2、分别输出每一
+//位数字 3、按逆序输出各位数字，例如原数为321,应输出123
+
+int panduan(int a)//判断输入的数是几位数
+{
+	int wei = 0;
+	if (a >= 0)//大于0
+	{
+		if (a / 100000 == 0)//是5位数
+		{
+			wei = 5;
+			if (a / 10000 == 0)//是4位数
+			{
+				wei = 4;
+				if (a / 1000 == 0)//是3位数
+				{
+					wei = 3;
+					if (a / 100 == 0)//是2位数
+					{
+						wei = 2;
+						if (a / 10 == 0)//是1位数
+						{
+							wei = 1;
+						}
+					}
+				}
+			}
+		}
+		else
+		{
+			wei = 6;//大于5位
+		}
+	}
+	else//小于0
+	{
+		if (a / 100000 == 0)//是负的5位数
+		{
+			wei = -5;
+			if (a / 10000 == 0)//是负的4位数
+			{
+				wei = -4;
+				if (a / 1000 == 0)//是负的3位数
+				{
+					wei = -3;
+					if (a / 100 == 0)//是负的2位数
+					{
+						wei = -2;
+						if (a / 10 == 0)//是负的1位数
+						{
+							wei = -1;
+						}
+					}
+				}
+			}
+		}
+		else
+		{
+			wei = 6;//大于5位
+		}
+	}
+
+	return wei;
+}
+
+void Put(int a)
+{
+	void put_1(int a, int y);
+	switch (panduan(a))//输出是几位数,并逆序输出
+	{
+	case -5:
+	case 5:
+		printf("这个数是五位数\n");
+		put_1(5, fabs (a));
+		break;
+	case -4:
+	case 4:
+		printf("这个数是四位数\n");
+		put_1(4, fabs(a));
+		break;
+	case -3:
+	case 3:
+		printf("这个数是三位数\n");
+		put_1(3, fabs(a));
+		break;
+	case -2:
+	case 2:
+		printf("这个数是二位数\n");
+		put_1(2, fabs(a));
+		break;
+	case -1:
+	case 1:
+		printf("这个数是一位数\n");
+		put_1(1, fabs(a));
+		break;
+	default:
+		printf("这是一个大于五位的数，请输入一个不多于5位的整数\n");
+		break;
+	}
+}
+
+void put_1(int a, int y)
+{
+	int ge, shi, bai, qian, wan;
+	switch (a)//输出是几位数,并逆序输出
+	{
+	case 5:
+		wan = y / 10000;
+		qian = y % 10000 / 1000;
+		bai = y % 1000 / 100;
+		shi = y % 100 / 10;
+		ge = y % 10;
+		printf("%d%d%d%d%d", ge, shi, bai, qian, wan);
+		break;
+	case 4:
+		qian = y / 1000;
+		bai = y % 1000 / 100;
+		shi = y % 100 / 10;
+		ge = y % 10;
+		printf("%d%d%d%d", ge, shi, bai, qian);
+		break;
+	case 3:
+		bai = y / 100;
+		shi = y % 100 / 10;
+		ge = y % 10;
+		printf("%d%d%d", ge, shi, bai);
+		break;
+	case 2:
+		shi = y / 10;
+		ge = y % 10;
+		printf("%d%d", ge, shi);
+		break;
+	case 1:
+		printf("%d", y);
+		break;
+	}
+}
+
+int main()
+{
+	float a;
+	printf("请输入一个不多于5位的整数:>");
+	for (;;)
+	{
+		scanf("%f", &a);
+		if (a - (int)a <= 0.000001)//判断是不是整数，不是则再次输入
+		{
+			break;
+		}
+		else
+		{
+			printf("请输入一个整数!\n");
+		}
+	}
+	Put((int)a);
+
+	return 0;
+}
