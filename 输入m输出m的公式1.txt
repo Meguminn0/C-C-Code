@@ -1,0 +1,28 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+    int n, m, all;
+    scanf("%d%d", &n, &m);
+    all = RE(n, m);
+    printf("%d", all);
+
+    return 0;
+}
+
+int RE(int n, int m)
+{
+    int re= n;
+    if (m == 1)
+    {
+        re = n;
+    }
+    else
+    {
+        re += RE(n, m - 1) / 2;
+    }
+
+    return re;
+}
