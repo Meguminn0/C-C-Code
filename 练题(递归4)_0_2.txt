@@ -1,0 +1,227 @@
+第一题：f(n)=1,                n=1
+                    f(n-1)+1,      n>1
+代码：
+_______________________________________________________________________
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<string.h>
+
+int Fn(int a);
+
+int main()
+{
+    float  n;
+    printf("请输入一个大于等于1的整数:>");
+    for (;;)                            /*判断是否满足条件*/
+    {
+        scanf("%f", &n);
+        if (n - (int)n == 0 && n >= 1)  /*满足条件，跳出循环*/
+        {
+            break;
+        }
+        else                            /*输入非正整数且小于1给提示，并再次输入*/
+        {
+            printf("请输入一个大于1的正整数！！\n");
+        }
+    }
+
+    printf("f(n)=%d", Fn((int)n));           /*调用Fn()函数，并输出结果*/
+
+    return 0;
+}
+
+int Fn(int a)
+{
+    int re = 1;                         /*定义返回值*/
+    if (a == 1)
+    {
+        return re;                      /*直接返回re*/
+    }
+    else
+    {
+        re = Fn(a - 1) + 1;
+    }
+
+    return re;
+}
+=================================================
+第二题：f(n)=n,                          n<=1
+                    f(n-1)+f(n-2),         n>1
+代码：
+_______________________________________________________________________________
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<string.h>
+
+int Fn(int a);
+
+int main()
+{
+    float n;
+    printf("请输入一个整数:>");
+    for (;;)
+    {
+        scanf("%f", &n);
+        if (n - (int)n == 0)                        /*满足条件，跳出循环*/
+        {
+            break;
+        }
+        else
+        {
+            printf("请输入一个整数！！\n");          /*不满足条件给提示，重新输入*/
+        }
+    }
+
+    printf("f(n)=%d", Fn((int)n));                  /*输出Fn()函数的值*/
+
+    return 0;
+}
+
+int Fn(int a)
+{
+    int re = a;                                     /*定义返回值*/
+    if (a <= 1)
+    {
+        return re;                                  /*直接返回re*/
+    }
+    else
+    {
+        re = Fn(a - 1) + Fn(a - 2);
+    }
+
+    return re;
+}、
+====================================================
+第三题：f(n)=1             n<=1
+                    f(n-1)*n   n>1
+代码：
+_______________________________________________________________________________
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+
+int Fn(int n);
+
+int main()
+{
+    float n;
+    for(;;)
+    {
+        scanf("%f", &n);
+        if (n - (int)n == 0)
+        {
+            break;
+        }
+        else
+        {
+            printf("请输入一个整数:>");
+        }
+    }
+    printf("%d", Fn((int)n));
+
+    return 0;
+}
+
+int Fn(int n)
+{
+    if (n <= 1)
+    {
+        return 1;
+    }
+    else
+    {
+        return Fn(n - 1) * n;
+    }
+}
+====================================================
+第四题：f(n)=printf(n%10)             n<10
+                    printf(n%10);f(n/10)   n>1
+代码：
+_______________________________________________________________________________
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+
+int Fn(int n);
+
+int main()
+{
+    float n;
+    for(;;)
+    {
+        scanf("%f", &n);
+        if (n - (int)n == 0)
+        {
+            break;
+        }
+        else
+        {
+            printf("请输入一个整数:>");
+        }
+    }
+    Fn((int)n);
+
+    return 0;
+}
+
+int Fn(int n)
+{
+    if (n < 10)
+    {
+        printf("printf(%d)\n", n % 10);
+    }
+    else
+    {
+        printf("printf(%d);", n % 10);
+        return Fn(n / 10);
+    }
+}	
+====================================================
+第五题：     k      1		k=0或k=n
+	C    =	k	k-1
+	   n      C	        +C		0<k<n
+		n-1	n-1
+代码：
+_______________________________________________________________________________
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+
+int C(int k, int n);
+
+int main()
+{
+    float n, k;
+    printf("请输入K和N的值:>");
+    for(;;)
+    {
+        scanf("%f%f", &k, &n);
+        if (n - (int)n == 0 && k- (int)k == 0 && 0 < k < n)
+        {
+            break;
+        }
+        else
+        {
+            printf("k和n必须是整数且要满足0<k<n:>");
+        }
+    }
+    printf("%d", C((int)k, (int)n));
+
+    return 0;
+}
+
+int C(int k, int n)
+{
+    if (k == 0 || k == n)
+    {
+        return 1;
+    }
+    else
+    {
+        return C(k, n - 1) + C(k - 1, n - 1);
+    }
+}
+
+
+
+
+
+
+
