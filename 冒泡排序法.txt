@@ -1,0 +1,55 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#define H 5
+
+void Print(int arr[], int a);
+void PaiSv(int arr[], int K);
+
+int main()
+{
+    int i, arr[H];
+    printf("请输入十个数:>\n");
+    for (i = 0; i < H; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+    Print(arr, H);
+    printf("\n");
+    PaiSv(arr, H);
+    Print(arr, H);
+
+    return 0;
+}
+
+void PaiSv(int arr[], int K)
+{
+    int i, j;
+    for (i = 0; i < K - 1; i++)
+    {
+        int flag = 0;
+        for (j = 0; j < K - i - 1; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                int t;
+                t = arr[j + 1];
+                arr[j + 1] = arr[j];
+                arr[j] = t;
+                flag = 1;
+            }
+        }
+        if (flag == 0)
+        {
+            break;
+        }
+    }
+}
+
+void Print(int arr[], int a)
+{
+    int i;
+    for (i = 0; i < a; i++)
+    {
+        printf("%d\t", arr[i]);
+    }
+}
