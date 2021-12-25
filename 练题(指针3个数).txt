@@ -1,0 +1,27 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#define MAX(x,y,z) x>y?(x>z?&x:&z):(y>z?&y:&z)
+#define MED(x,y,z) x>y?(y>z?&y:(x>z?&z:&x)):(x>z?&x:(y>z?&z:&y))
+#define MIN(x,y,z) x>y?(y>z?&z:&y):(x>z?&z:&x)
+
+/*题目：从键盘输入3个整数，要求定义3个指针变量pl，p2，p3，使p1指向3个
+数的最大者.p2指向次大者，p3指向最小者，然后按由小到大的次序输出3个数。*/
+
+int main()
+{
+    int* p1, * p2, * p3;
+    int a, b, c;
+    scanf("%d", &a);
+    scanf("%d", &b);
+    scanf("%d", &c);
+
+    p1 = MAX(a, b, c);      /*求最大变量的地址*/
+    p2 = MED(a, b, c);      /*求中间变量的地址*/
+    p3 = MIN(a, b, c);      /*求最小变量的地址*/
+
+    printf("%d ", *p3);
+    printf("%d ", *p2);
+    printf("%d ", *p1);
+
+    return 0;
+}
