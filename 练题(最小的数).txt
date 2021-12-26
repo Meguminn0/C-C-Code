@@ -1,0 +1,31 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+
+/*编写“int min(int x, int y)”,使x,y中校者作为函数值，在main函数中输入10个
+整数，调用函数min 求出其中的最小值，要求不使用数组*/
+
+int main()
+{
+    int count, m, Min;
+    printf("请输入十个数，用空格隔开:>");
+    for (count = 0; count < 9; count++)
+    {
+        if (count == 0)
+        {
+            scanf("%d%d", &Min, &m);
+        }
+        else
+        {
+            scanf("%d", &m);
+        }
+        Min = min(Min, m);
+    }
+    printf("%d", Min);
+
+    return 0;
+}
+
+int min(int x, int y)
+{
+    return x > y ? y : x;
+}
