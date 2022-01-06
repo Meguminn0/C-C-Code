@@ -1,0 +1,9 @@
+#pragma once
+#define ROW 3
+#define COL 3
+
+void CleanBoard(char board[ROW][COL], int row, int col);
+void printBoard(char board[ROW][COL], int row, int col);
+void PlayerMove(char board[ROW][COL], int row, int col);
+void ComputerMove(char board[ROW][COL], int row, int col);
+char Judge(char board[ROW][COL], int row, int col);

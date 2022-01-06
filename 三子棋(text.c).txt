@@ -1,0 +1,95 @@
+//测试三子棋游戏
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<windows.h>
+#include "game.h"
+
+void menu()
+{
+	static int i = 0;
+	if (i == 0)
+	{
+		i = 1;
+		printf("************三子棋游戏**************\n");
+		printf("**************简单版****************\n");
+		Sleep(2000);
+		system("cls");
+		printf("***************玩法*****************\n");
+		printf("******以电脑小键盘的排班为参考******\n");
+		printf("****小键盘上的数字对应棋盘的位置****\n");
+		printf("*******当有三个相同符号连续时*******\n");
+		printf("***********可赢得游戏胜利***********\n");
+		Sleep(6000);
+		system("cls");
+	}
+	printf("************************************\n");
+	printf("*******  1.play      0.exit  *******\n");
+	printf("************************************\n");
+}
+
+void game()
+{
+	char re;
+	char board[ROW][COL] = { 0 };		//定义棋板
+	CleanBoard(board, ROW, COL);		//初始化棋板
+	system("cls");
+	printBoard(board, ROW, COL);		//输出棋板
+	while (1)
+	{
+		PlayerMove(board, ROW, COL);	//玩家下棋
+		system("cls");
+		printBoard(board, ROW, COL);	//输出棋板
+		re = Judge(board, ROW, COL);	//判断
+		if (re != 'G')
+		{
+			break;
+		}
+		ComputerMove(board, ROW, COL);	//电脑下棋
+		system("cls");
+		printBoard(board, ROW, COL);	//输出棋板
+		re = Judge(board, ROW, COL);	//判断
+		if (re != 'G')
+		{
+			break;
+		}
+	}
+	if (re == '@')
+		printf("玩家赢！！\n");
+	else if (re == '*')
+		printf("电脑赢！！\n");
+	else
+		printf("平局！！\n");
+	Sleep(3000);
+	system("cls");
+}
+
+void test()
+{
+	int input = 0;
+	do
+	{
+		menu();
+		printf("请选择:>");
+		scanf("%d", &input);
+		fflush(stdin);
+		switch (input)
+		{
+		case 1:
+			game();
+			break;
+		case 0:
+			printf("\n***已退出游戏！！***\n");
+			break;
+		default:
+			printf("\n输入错误！请重新输入！\n");
+			break;
+		}
+	} while (input);
+}
+
+int main()
+{
+	test();
+
+	return 0;
+}
