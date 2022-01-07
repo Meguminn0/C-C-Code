@@ -1,0 +1,37 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+
+int main()
+{
+	int i, num;
+	printf("输入菱形的一半层数:>");
+	scanf("%d", &num);
+	for (i = 0; i < num; i++)				/*上半*/
+	{
+		int j;
+		for (j = 0; j < num - i - 1; j++)	/*输出空格*/
+		{
+			printf(" ");
+		}
+		for (j = 0; j < 2 * i + 1; j++)		/*输出'*'号*/
+		{
+			printf("*");
+		}
+		putchar('\n');				/*换行*/
+	}
+	for (i = 1; i < num; i++)			/*下半*/
+	{
+		int j;
+		for (j = 0; j < i; j++)			/*输出空格*/
+		{
+			printf(" ");
+		}
+		for (j = 0; j < 2 * num - 2 * i - 1; j++)	/*输出'*'号*/
+		{
+			printf("*");
+		}
+		putchar('\n');
+	}
+
+	return 0;
+}
