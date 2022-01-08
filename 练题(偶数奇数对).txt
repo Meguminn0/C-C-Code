@@ -1,0 +1,36 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<math.h>
+
+//对于任意一个大于2的偶数，存在两个个奇数之和等于他，求给定一个偶数，输出有几对奇数之和等于他
+//并将这些奇数对输出来
+
+int main()
+{
+	int i;
+	int num, dui = 1;
+	printf("请输入一个偶数:>");
+	for (;;)
+	{
+		scanf("%d", &num);
+		if (num % 2 == 0)
+		{
+			break;
+		}
+		else
+		{
+			printf("这个数不是偶数，请重新输入:>");
+		}
+	}
+	for (i = 1; i <= num / 2; i+=2, dui++)
+	{
+		if (i + (num - i) == num)
+		{
+			printf("第%d对:%d+%d\n", dui, i, num - i);
+		}
+	}
+	printf("一共有%d对", dui - 1);
+
+
+	return 0;
+}
