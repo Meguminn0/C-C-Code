@@ -1,0 +1,39 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<math.h>
+#define H 10
+#define L 10
+
+int main()
+{
+	int arr[H][L] = { 0 };
+	int i, j;
+	for(i = 0; i < H; i++)
+	{
+		arr[i][0] = 1;
+		arr[i][i] = 1;
+	}
+	for (i = 2; i < H; i++)				/*行数*/
+	{
+		for (j = 1; j <= i-1; j++)		/*列数*/
+		{
+			arr[i][j] = arr[i - 1][j - 1] + arr[i - 1][j];
+		}
+	}
+	for (i = 0; i < H; i++)
+	{
+		int k;
+		for (k = 0; k <= H-1-i; k++)	/*输出空格*/
+		{
+			printf("   ");
+		}
+		for (j = 0; j <= i; j++)		/*输出数组*/
+		{
+			printf("%3d", arr[i][j]);
+			printf("   ");				/*输出数组之间的间隔*/
+		}
+		putchar('\n');
+	}
+
+	return 0;
+}
