@@ -1,0 +1,128 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include "game.h"
+#include <stdio.h>
+
+//初始化
+void Newboard(char board[ROWS][COLS], int rows, int cols, char set)
+{
+	int i, j;
+	for (i = 0; i < rows; i++)
+	{
+		for (j = 0; j < cols; j++)
+		{
+			board[i][j] = set;	
+		}
+	}
+}
+
+//放地雷
+void setlei(char lei[][COLS], int row, int col)
+{
+	int num = MOD;
+	while (num)
+	{
+		int x = rand() % row + 1;
+		int y = rand() % row + 1;
+		if (lei[x][y] == '0')
+		{
+			lei[x][y] = '1';
+			num--;
+		}
+	}
+}
+
+//输出面板
+void Putboard(char board[ROWS][COLS], int row, int col)
+{
+	int i, j, x;
+	for (x = 0; x <= col; x++)
+	{
+		printf(" %d", x);
+	}
+	printf("—>x\n |");
+	for (x = 0; x < col; x++)
+	{
+		printf("—");
+	}
+	putchar('\n');
+	for (i = 1; i <= row; i++)
+	{
+		printf("%d| ", i);
+		for (j = 1; j <= col; j++)
+		{
+			printf("%c ", board[i][j]);
+		}
+		putchar('\n');
+	}
+	printf(" y\n");
+}
+
+//找地雷
+void Findlie(char lei[ROWS][COLS], char board[ROWS][COLS], int row, int col)
+{
+	int x, y;
+	int count = 0;
+	while (count < ROW * COL - MOD)
+	{
+		printf("请输入查找的坐标(用空格隔开):>");
+		scanf("%d%d", &x, &y);
+		system("cls");
+		//是否越界
+		if (x > 0 && x <= col && y > 0 && y <= row)		/*没越界*/
+		{
+			if (lei[y][x] == '1')	/*是地雷的结果*/
+			{
+				printf("你死了！！\n");
+				Putboard(lei, ROW, COL);
+				printf("请稍等");
+				Wait();
+				break;
+			}
+			else if(board[y][x] != '*')		/*坐标被踩过的的结果*/
+			{
+				printf("该坐标已被踩过，请重新输入！\n");
+				Putboard(board, ROW, COL);
+				continue;
+			}
+			else		/*不是地雷，且没有被踩过的结果*/
+			{
+				//计算周围有几个雷
+				board[y][x] = Calculation(lei, y, x) + '0';
+				Putboard(board, ROW, COL);
+				count++;
+			}
+		}
+		else	/*越界给出提示*/
+		{
+			printf("输入的坐标不正确，请重新输入!\n");
+		}
+		//结束判断
+		if (count == ROW * COL - MOD)
+		{
+			printf("おめでとう！(^_^)你赢了！！\n");
+		}
+	}
+}
+
+int Calculation(char lei[ROWS][COLS], int x, int y)
+{
+	return lei[x - 1][y] + 
+		lei[x - 1][y - 1] +
+		lei[x][y - 1] +
+		lei[x + 1][y - 1] +
+		lei[x + 1][y] + 
+		lei[x + 1][y + 1] +
+		lei[x][y + 1] + 
+		lei[x - 1][y + 1] - 8 * '0';
+}
+
+//退出程序等待
+void Wait()
+{
+	for (int dian = 0; dian < 3; dian++)
+	{
+		printf(".");
+		Sleep(2000);
+	}
+	system("cls");
+}
