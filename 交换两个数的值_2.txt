@@ -1,0 +1,19 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+
+int main()
+{
+	int i = 5, j = 3;
+	printf("交换前:%d,", i);
+	printf("%d\n", j);
+	//交换数值
+	i = i + j;
+	j = i - j;
+	i = i - j;
+
+	printf("交换后:%d,", i);
+	printf("%d\n", j);
+	
+
+	return 0;
+}
