@@ -1,0 +1,72 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+
+/*有M个小孩到公园玩，门票是1元。其中N个小孩带的钱为1元，K个小孩带的钱为2元。
+ N+K=M
+售票员没有零钱
+问题1 ：
+输入M 个小孩和N个小孩
+并输入他们的排队顺序
+判断这个队伍，能否使得售票员能找得开零钱*/
+
+int main()
+{
+	int k, n;
+	printf("请输入带2元的小孩的个数:>");
+	scanf("%d", &k);
+	printf("请输入带1元的小孩的个数:>");
+	scanf("%d", &n);
+	if (k > n)
+	{
+		printf("售票员不能找得开零钱\n");
+	}
+	else
+	{
+		int sum = k + n;
+		int flag = 1, put;
+		int r = 0;//售票员的零钱
+		printf("用1和2分别表示带1元和带2元的小孩\n");
+		printf("请用空格可开输入他们的顺序");
+		for (; sum; sum--)
+		{
+			scanf("%d", &put);
+			switch (put)
+			{
+			case 1:
+				if (n>0)
+				{
+					r++;
+					n--;
+				}
+				else
+				{
+					sum++;
+				}
+				break;
+			case 2:
+				if (k > 0)
+				{
+					r--;
+					k--;
+				}
+				else
+				{
+					sum++;
+				}
+				break;
+			}
+			if (r < 0)
+			{
+				printf("售票员不能找得开零钱\n");
+				flag = 0;
+				break;
+			}
+		}
+		if (flag == 1)
+		{
+			printf("售票员能找得开零钱\n");
+		}
+	}
+
+	return 0;
+}
