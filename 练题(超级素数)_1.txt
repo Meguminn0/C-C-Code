@@ -1,0 +1,43 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<math.h>
+
+/*超级素数指一个n位正整数，他的前1位，2位，...，n位均为素数，例如733是个3位
+   超级素数，因为7，73，733均为素数，输出全部的3位数超级素数*/
+
+int SuShu(int num)
+{
+	int num1;
+	int i, j;
+	//判断前n位是否是素数
+	for (i = 0; i < 3; i++)
+	{
+		num1 = num / (int)pow(10, i);
+		for (j = 2; j <= sqrt(num1); j++)
+		{
+			if (num1 % j == 0)
+			{
+				return 0;
+			}
+		}
+	}
+
+	return 1;
+}
+
+int main()
+{
+	int num;
+	//输出全部的三位数超级素数
+	for (num = 100; num < 1000; num++)
+	{
+		//判断是否为素数
+		if (SuShu(num))
+		{
+			//函数返回1，是超级素数，并输出；返回0，不是超级素数
+			printf("%d\n", num);
+		}
+	}
+
+	return 0;
+}
