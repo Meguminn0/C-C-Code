@@ -1,0 +1,33 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+int main()
+{
+	//随机生成一个二位数，直到这个数为97时，停下
+	//看看你一共用了多少次？
+	//使用srand()和rand();
+	// srand()需要一个(unsigned int)的参数作为种子，一般用时间作为参数
+	// srand((unsigned int)time(NULL))
+	//他的作用是设置一个随机数种子，这个种子是根据程序开始运行时的时间，来确定的
+	//用时间来生成不同的种子，进而达到每次执行代码时的随机数序列不同
+	//用rand根据srand()提供的种子值返回一个随机数
+	// 而随机数是一个伪随机数，是通过种子为基准，以某个递推公式推算出来的一系数
+	//当种子一样时，每次执行代码所生成的随机数的顺序是一样的
+	int count = 1;	//计数
+	int num;		//保存随机数
+	srand((unsigned int)time(NULL));	//设置种子
+	for (;; count++)
+	{
+		num = rand() % 100 + 1;	//设定随机数的范围是1-99之间
+		printf("第%d次是：%d\n", count, num);
+		if (num == 97)
+		{
+			printf("一共用了%d次!!", count);
+			break;
+		}
+	}
+	
+	return 0;
+}
